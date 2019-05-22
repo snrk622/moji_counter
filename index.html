@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>moji counter</title>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body>
+        <header>
+            <h1>moji counter</h1>
+        </header>
+        
+        <div class="wrapper" id="app">
+            <p><span class="h2">Goal: </span><input type="number" step="100" v-model="goal"> moji</p>
+            <p><span class="h2">Now: </span><span class="num">{{ textCount() }}</span> moji  ({{ percentage() }}%)</p>
+            <textarea v-model="text"></textarea>
+            <div class="rate-wrapper">
+                <div class="rate-bar red" v-show="percentage() < 20" :style="{width: rate() + '%'}"></div>
+                <div class="rate-bar orange" v-show="percentage() < 40" :style="{width: rate() + '%'}"></div>
+                <div class="rate-bar yellow" v-show="percentage() < 60" :style="{width: rate() + '%'}"></div>
+                <div class="rate-bar yellowgreen" v-show="percentage() < 80" :style="{width: rate() + '%'}"></div>
+                <div class="rate-bar green" v-show="percentage() >= 80" :style="{width: rate() + '%'}"></div>
+                <span>{{percentage()}}%</span>
+            </div>
+            <!-- <div class="msg-wrapper">
+                <img src="img/girl.png">
+                <div>
+                    <p>LINE</p>
+                    <p>{{ message() }}</p>
+                </div>
+                
+            </div> -->
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

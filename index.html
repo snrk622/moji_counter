@@ -13,14 +13,14 @@
         <div class="wrapper" id="app">
             <p><span class="h2">Goal: </span><input type="number" step="100" v-model="goal"> moji</p>
             <p><span class="h2">Now: </span><span class="num">{{ textCount() }}</span> moji  ({{ percentage() }}%)</p>
-            <textarea v-model="text"></textarea>
+            <textarea ref="adjust_textarea" @keydown="adjustHeight" v-model="textareaVal"></textarea>
             <div class="rate-wrapper">
                 <div class="rate-bar red" v-show="percentage() < 20" :style="{width: rate() + '%'}"></div>
                 <div class="rate-bar orange" v-show="percentage() < 40" :style="{width: rate() + '%'}"></div>
                 <div class="rate-bar yellow" v-show="percentage() < 60" :style="{width: rate() + '%'}"></div>
                 <div class="rate-bar yellowgreen" v-show="percentage() < 80" :style="{width: rate() + '%'}"></div>
                 <div class="rate-bar green" v-show="percentage() >= 80" :style="{width: rate() + '%'}"></div>
-                <span>{{percentage()}}%</span>
+                <span class="rate"><span v-show="percentage() >= 100">Completed! (</span><span>{{percentage()}}%</span><span v-show="percentage() >= 100">)</span></span>
             </div>
             <!-- <div class="msg-wrapper">
                 <img src="img/girl.png">
@@ -31,6 +31,9 @@
                 
             </div> -->
         </div>
+        <footer>
+            <p>&copy; 2019 snrk.com</p>
+        </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
         <script src="js/main.js"></script>

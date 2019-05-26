@@ -5,13 +5,13 @@
     let vm = new Vue({
         el: '#app',
         data: {
-            text: '',
+            textareaVal: '',
             goal: 0,
             class: 'red'
         },
         methods: {
             textCount: function () {
-                return this.text.length;
+                return this.textareaVal.length;
             },
             percentage: function () {
                 if (this.goal !== 0) {
@@ -25,22 +25,14 @@
                 }
                 return 0;
             },
-            message: function () {
-                if (this.percentage() < 20) {
-                    return 'スタート！';
-                } else if (this.percentage() < 40) {
-                    return '頑張れ！';
-                } else if (this.percentage() < 60) {
-                    return 'いいぞ〜';
-                } else if (this.percentage() < 80) {
-                    return '眠くなってきたね...';
-                } else if (this.percentage() < 100) {
-                    return 'ラストスパート';
-                } else if (this.percentage() >= 100) {
-                    return 'お疲れ！'
-                } else {
-                    return;
-                }
+            adjustHeight() {
+                const textarea = this.$refs.adjust_textarea
+                const resetHeight = new Promise(function (resolve) {
+                    resolve(textarea.style.height = 'auto')
+                });
+                resetHeight.then(function () {
+                    textarea.style.height = textarea.scrollHeight + 'px'
+                });
             }
         }
     });
